@@ -1,0 +1,23 @@
+{
+  "name": "webpack-101",
+  "version": "1.0.0",
+  "description": "webpack project starter",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "prod": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3point14guy/webpack.git"
+  },
+  "author": "Nick Piaskoski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3point14guy/webpack/issues"
+  },
+  "homepage": "https://github.com/3point14guy/webpack#readme",
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  }
+}
