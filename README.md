@@ -5,3 +5,5 @@ Right in the first video I had some problems following along becuase I was getti
 Video 2:  Just before minute 4, Petr sets the path: in webpack.config.js to 'dist'. Version 3.8.1 requires the path be set as '''\__dirname + \'dist\''''
 
 Also, in the same file, where the HtmlWebpackPlugin is added, a third option of filename: 'index.html', needed to be added for the index.html file to show up in the dist folder
+
+Video 3: 
