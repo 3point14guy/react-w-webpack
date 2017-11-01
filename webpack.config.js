@@ -1,5 +1,4 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const path = require("path");
