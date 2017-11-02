@@ -6,4 +6,4 @@ Video 2:  Just before minute 4, Petr sets the path: in webpack.config.js to 'dis
 
 Also, in the same file, where the HtmlWebpackPlugin is added, a third option of filename: 'index.html', needed to be added for the index.html file to show up in the dist folder
 
-Video 3: 
+Video #?? a.k.a. Webpack 2 - Multiple templates options and RimRaf: Petr suddenly switches to using 'npm run prod' where he was using 'dev' before.  Moving the index.html file out of the 'dist' folder seems to only work in production version. 
