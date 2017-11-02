@@ -1,3 +1,3 @@
-const css = require('./app.scss');
+import css from './app.scss';
 
-console.log("Hello from app.js and webpacks dev server");
+console.log("Hello from Hot Model Reloading");
