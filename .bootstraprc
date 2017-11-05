@@ -38,7 +38,8 @@ extractStyles: false
 # Thus, you may customize Bootstrap variables
 # based on the values established in the Bootstrap _variables.scss file
 #
-# bootstrapCustomizations: ./path/to/bootstrap/customizations.scss
+# ***MY EDIT*** uncommenting the line below to access bootstrap variables and customize them using the _variables.scss file.  look for the variable names in the the path node_modules/bootstrap-sass/stylesheets/bootstrap/_variables.scss
+bootstrapCustomizations: ./src/bootstrap/customizations.scss
 
 
 # Import your custom styles here

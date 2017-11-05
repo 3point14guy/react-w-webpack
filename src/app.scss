@@ -1,8 +1,12 @@
+@import './bootstrap/customizations.scss';
+
 html, body {
   // background: url('./images/big-creek.jpg') center center;
   height: 100%;
   min-height: 100%
 }
-p {
-  color: red;
+body {
+    h1 {
+      color: $brand-success;
+    }
 }
