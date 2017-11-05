@@ -7,7 +7,7 @@ var cssDev = ['style-loader', 'css-loader', 'sass-loader'];
 var cssProd = ExtractTextPlugin.extract({
     fallback: 'style-loader',
     use: ['css-loader', 'sass-loader'],
-    publicPath: '/dist'
+    publicPath: './'
 })
 var cssConfig = isProd ? cssProd : cssDev;
 
@@ -25,6 +25,18 @@ module.exports = {
             {
               test: /\.scss$/,
               use: cssConfig
+            },
+            {
+              test: /\.(jpe?g|png|gif|svg)$/i,
+              use: [
+                  // instead of a hash for the file name in the dist folder, this will use the existing file name and extension type from the src folder.  the output path tells where in the dist folder to put these images.
+                  // if the output path and public path point ot the same place as it does below:
+                  // 'file-loader?name=[name].[ext]&outputPath=images/&publicPath=images/'
+                  //then you can use this instead:
+                  'file-loader?name=images/[name].[ext]',
+                  // optimizes images
+                  'image-webpack-loader'
+                ]
             }
         ]
     },
