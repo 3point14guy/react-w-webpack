@@ -14,3 +14,12 @@ Video 11: There is an edit that needs to be made in the cssProd variable which P
 
 Also, if you get this error after adding image-webpack-loader: - Error: dyld: Library not loaded: /usr/local/opt/libpng/lib/libpng16.16.dy    lib
 then run '''brew install libpng''' and that should fix it.
+
+Video 12: In the ExtractTextPlugin, the first '''/''' should be excluded from the filename.  The correct code block should look like this
+'''
+new ExtractTextPlugin({
+    filename: 'css/[name].css',
+    disable: !isProd,
+    allChunks: true
+}),
+,,,

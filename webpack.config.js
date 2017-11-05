@@ -2,6 +2,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 const path = require("path");
+var bootstrapEntryPoints = require('./webpack.bootstrap.config');
+
 var isProd = process.env.NODE_ENV === 'production'; //tests true false for if I am in production or development
 var cssDev = ['style-loader', 'css-loader', 'sass-loader'];
 var cssProd = ExtractTextPlugin.extract({
@@ -10,11 +12,13 @@ var cssProd = ExtractTextPlugin.extract({
     publicPath: './'
 })
 var cssConfig = isProd ? cssProd : cssDev;
+var bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev;
 
 module.exports = {
     entry: {
         app: './src/app.js',
-        contact: './src/contact.js'
+        contact: './src/contact.js',
+        bootstrap: bootstrapConfig
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -37,7 +41,11 @@ module.exports = {
                   // optimizes images
                   'image-webpack-loader'
                 ]
-            }
+            },
+            { test: /\.(woff2?|svg)$/, loader: 'url-loader?limit=10000&name=fonts/[name]' },
+            { test: /\.(ttf|eot)$/, loader: 'file-loader?name=fonts/[name].[ext]' },
+            // Bootstrap 3
+            { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports-loader?jQuery=jquery' },
         ]
     },
     devServer: {
@@ -65,7 +73,7 @@ module.exports = {
 
         }),
         new ExtractTextPlugin({
-            filename: 'app.css',
+            filename: 'css/[name].css',
             disable: !isProd,
             allChunks: true
         }),
