@@ -2,6 +2,14 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 const path = require("path");
+var isProd = process.env.NODE_ENV === 'production'; //tests true false for if I am in production or development
+var cssDev = ['style-loader', 'css-loader', 'sass-loader'];
+var cssProd = ExtractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: ['css-loader', 'sass-loader'],
+    publicPath: '/dist'
+})
+var cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = {
     entry: {
@@ -16,7 +24,7 @@ module.exports = {
         rules: [
             {
               test: /\.scss$/,
-              use: ['style-loader', 'css-loader', 'sass-loader']
+              use: cssConfig
             }
         ]
     },
@@ -46,7 +54,8 @@ module.exports = {
         }),
         new ExtractTextPlugin({
             filename: 'app.css',
-            disable: true
+            disable: !isProd,
+            allChunks: true
         }),
         // this allows changes to update w out reloading the whole page which saves time checking your changes to code.  for development only.
         new webpack.HotModuleReplacementPlugin(),
