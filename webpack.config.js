@@ -5,6 +5,7 @@ const path = require("path");
 const bootstrapEntryPoints = require('./webpack.bootstrap.config');
 const glob = require('glob-all');
 const PurifyCSSPlugin = require('purifycss-webpack');
+const handlebars = require('handlebars');
 
 const isProd = process.env.NODE_ENV === 'production'; //tests true false for if I am in production or development
 const cssDev = ['style-loader', 'css-loader', 'sass-loader'];
@@ -48,6 +49,15 @@ module.exports = {
             { test: /\.(ttf|eot)$/, loader: 'file-loader?name=fonts/[name].[ext]' },
             // Bootstrap 3
             { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports-loader?jQuery=jquery' },
+            {
+              test: /\.(hbs|handlebars)$/,
+              loader: 'handlebars-loader',
+              query: {
+                helperDirs: [
+                  path.join(__dirname, 'dist/templates/helpers')
+                ]
+            }
+          }
         ]
     },
     devServer: {

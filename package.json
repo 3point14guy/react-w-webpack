@@ -40,6 +40,7 @@
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
-    "glob-all": "^3.1.0"
+    "glob-all": "^3.1.0",
+    "handlebars": "^4.0.11"
   }
 }
