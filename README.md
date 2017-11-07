@@ -23,3 +23,14 @@ new ExtractTextPlugin({
     allChunks: true
 }),
 ,,,
+
+Video 13: MOdal and drop down list were not working after updates in prod env.  Needed to '''npm install --save glob-all''' from the CLI, move bootstrap.bundle.js into the src file and make these changes to the config:
+'''
+ const glob = require('glob-all');
+'''
+'''
+paths: glob.sync([
+  path.join(__dirname, 'src/*.html'),
+  path.join(__dirname, 'src/*.js')
+]),
+'''
