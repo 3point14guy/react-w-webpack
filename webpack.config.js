@@ -1,18 +1,20 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 const path = require("path");
-var bootstrapEntryPoints = require('./webpack.bootstrap.config');
+const bootstrapEntryPoints = require('./webpack.bootstrap.config');
+const glob = require('glob-all');
+const PurifyCSSPlugin = require('purifycss-webpack');
 
-var isProd = process.env.NODE_ENV === 'production'; //tests true false for if I am in production or development
-var cssDev = ['style-loader', 'css-loader', 'sass-loader'];
-var cssProd = ExtractTextPlugin.extract({
+const isProd = process.env.NODE_ENV === 'production'; //tests true false for if I am in production or development
+const cssDev = ['style-loader', 'css-loader', 'sass-loader'];
+const cssProd = ExtractTextPlugin.extract({
     fallback: 'style-loader',
     use: ['css-loader', 'sass-loader'],
     publicPath: './'
 })
-var cssConfig = isProd ? cssProd : cssDev;
-var bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev;
+const cssConfig = isProd ? cssProd : cssDev;
+const bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev;
 
 module.exports = {
     entry: {
@@ -80,6 +82,14 @@ module.exports = {
         // this allows changes to update w out reloading the whole page which saves time checking your changes to code.  for development only.
         new webpack.HotModuleReplacementPlugin(),
         // This plugin will cause the relative path of the module to be displayed when HMR is enabled. Suggested for use in development.
-        new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin(),
+        // make sure this is after the ExtractTextPlugin
+        new PurifyCSSPlugin({
+            //checks all html files for style elements and specifys only those to be used from bootstrap.
+            paths: glob.sync([
+              path.join(__dirname, 'src/*.html'),
+              path.join(__dirname, 'src/*.js')
+            ])
+        })
     ]
   }
