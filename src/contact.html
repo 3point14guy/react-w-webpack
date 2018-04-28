@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link href="app.css" rel="stylesheet">
   </head>
   <body>
     <h1>Webpack</h1>
     <p>some text here</p>
-    <img src=images/tomatoes.jpg alt="tomatoes"/>
+    <img class="img-responsive" src=<%=require("./images/tomatoes.jpg") %> alt="tomatoes"/>
   </body>
-    <script type="text/javascript" src="app.bundle.js"></script>
-  
+
 </html>
