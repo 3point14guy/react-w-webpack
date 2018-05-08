@@ -19,7 +19,7 @@ const bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoint
 
 module.exports = {
     entry: {
-        app: './src/app.js',
+        app: './src/index.js',
         contact: './src/contact.js',
         bootstrap: bootstrapConfig
     },
@@ -32,6 +32,11 @@ module.exports = {
             {
               test: /\.scss$/,
               use: cssConfig
+            },
+            {
+              test: /\.js$/,
+              exclude: /node_modules/,
+              use: 'babel-loader'
             },
             {
               test: /\.(jpe?g|png|gif|svg)$/i,
