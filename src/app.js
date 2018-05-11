@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Headline = () => {
   return <h1 className="title">Welcome to the React World</h1>
@@ -12,19 +13,18 @@ const Greeting = (props) => {
 }
 
 // App is like yield in Rails. it will render all of our JSX
-const App = () => {
-  return (
-    <div>
-    <Headline />
-    <Greeting name="John" age={25}/>
-    </div>
-  )
+export class App extends React.Component {
+  render() {
+    return (
+      <div>
+      <Headline />
+      <Greeting name='Thea' age={"25"} />
+      </div>
+    )
+  }
 }
-
 // propTypes will validate our data propTypes
-Greeting.propTypes ={
-  name: React.PropTypes.string,
-  age: React.PropTypes.number.isRequired
+Greeting.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired
 }
-
-export default App;

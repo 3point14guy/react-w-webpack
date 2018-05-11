@@ -51,6 +51,7 @@
   "dependencies": {
     "glob-all": "^3.1.0",
     "handlebars": "^4.0.11",
-    "hoek": "^5.0.3"
+    "hoek": "^5.0.3",
+    "prop-types": "^15.6.1"
   }
 }
